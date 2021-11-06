@@ -8,7 +8,7 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 			this.app_info = null;
 			this.app_uuid = null;
 	
-			this.current_version = '0.20.45.2021.09.24';
+			this.current_version = '0.20.51.2021.11.06';
 	
 			// events (use window event system)
 			window.addEventListener('message', this.handleMessage.bind(this), false);
@@ -317,6 +317,13 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 			this.postData({action: 'setStartConditionsParameter', key, value});
 		}
 
+		async getAppInfo() {
+			let answer_struct = await this.sendRequest({action: 'getAppInfo'})
+			.catch(err => {});
+
+			return (answer_struct ? answer_struct : null); 
+		}
+
 		async getAppUUID() {
 			let answer_struct = await this.sendRequest({action: 'getAppUUID'})
 			.catch(err => {});
@@ -374,6 +381,13 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 			this.postData({action: 'setStartConditionsParameter', key: 'mutable', value: false});
 		}
 
+		async getTransactionInfo() {
+			let answer_struct = await this.sendRequest({action: 'getTransactionInfo'})
+			.catch(err => {});
+
+			return (answer_struct ? answer_struct.tx_info : null);
+		}
+
 		async fetchTransactionInfo(transaction_hash) {
 			let answer_struct = await this.sendRequest({action: 'fetchTransactionInfo', transaction_hash})
 			.catch(err => {});
@@ -395,7 +409,22 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 			return (answer_struct ? answer_struct.amount : null);
 		}
 
+		async getWidgetInfo() {
+			let answer_struct = await this.sendRequest({action: 'getWidgetInfo'})
+			.catch(err => {});
+
+			return (answer_struct ? answer_struct : null); 
+		}
+
+		async getTokenAmount() {
+			let answer_struct = await this.sendRequest({action: 'getAmount'})
+			.catch(err => {});
+
+			return (answer_struct ? answer_struct.amount : null); 
+		}
+
 		async fetchTokenAmount() {
+			// OBSOLETE: fetch should be used only when passing a parameter
 			let answer_struct = await this.sendRequest({action: 'getAmount'})
 			.catch(err => {});
 
@@ -406,7 +435,15 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 			this.postData({action: 'setAmount', amount: token_amount});
 		}
 
+		async getToAddress() {
+			let answer_struct = await this.sendRequest({action: 'getToAddress'})
+			.catch(err => {});
+
+			return (answer_struct ? answer_struct.to_address : null); 
+		}
+
 		async fetchToAddress() {
+			// OBSOLETE: fetch should be used only when passing a parameter
 			let answer_struct = await this.sendRequest({action: 'getToAddress'})
 			.catch(err => {});
 
@@ -417,21 +454,45 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 			this.postData({action: 'setToAddress', address});
 		}
 
-		async fetchCardAddress() {
+		async getCardAddress() {
 			let answer_struct = await this.sendRequest({action: 'getCardAddress'})
 			.catch(err => {});
 
 			return (answer_struct ? answer_struct.card_address : null); 
 		}
 
-		async fetchCardBalance() {
+		async fetchCardAddress() {
+			// OBSOLETE: fetch should be used only when passing a parameter
+			let answer_struct = await this.sendRequest({action: 'getCardAddress'})
+			.catch(err => {});
+
+			return (answer_struct ? answer_struct.card_address : null); 
+		}
+
+		async getCardBalance() {
 			let answer_struct = await this.sendRequest({action: 'getCardBalance'})
 			.catch(err => {});
 
 			return (answer_struct ? answer_struct : null); 
 		}
 
+		async fetchCardBalance() {
+			// OBSOLETE: fetch should be used only when passing a parameter
+			let answer_struct = await this.sendRequest({action: 'getCardBalance'})
+			.catch(err => {});
+
+			return (answer_struct ? answer_struct : null); 
+		}
+
+		async getCardPublicKeys() {
+			let answer_struct = await this.sendRequest({action: 'getCardPublicKeys'})
+			.catch(err => {});
+
+			return (answer_struct ? answer_struct : null); 
+		}
+
 		async fetchCardPublicKeys() {
+			// OBSOLETE: fetch should be used only when passing a parameter
 			let answer_struct = await this.sendRequest({action: 'getCardPublicKeys'})
 			.catch(err => {});
 
@@ -439,7 +500,15 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 		}
 
 
+		async getInvoiceId() {
+			let answer_struct = await this.sendRequest({action: 'getInvoiceId'})
+			.catch(err => {});
+
+			return (answer_struct ? answer_struct.invoice_id : null); 
+		}
+
 		async fetchInvoiceId() {
+			// OBSOLETE: fetch should be used only when passing a parameter
 			let answer_struct = await this.sendRequest({action: 'getInvoiceId'})
 			.catch(err => {});
 
@@ -448,6 +517,13 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 
 		async setInvoiceId(id) {
 			this.postData({action: 'setInvoiceId', invoiceid: id});
+		}
+
+		async isEnabled() {
+			let answer_struct = await this.sendRequest({action: 'isEnabled'})
+			.catch(err => {});
+
+			return (answer_struct ? answer_struct.enabled : null); 
 		}
 
 		async fetchIsEnabled() {
@@ -474,6 +550,15 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 		async setTransactionHash(tx_hash) {
 			this.postData({action: 'setTransactionHash', transaction_hash: tx_hash});
 		}
+
+		// request transfer
+		async doAmountTransfer(amount, to_address) {
+			let answer_struct = await this.sendRequest({action: 'doAmountTransfer', amount, to_address, noreplay: true})
+			.catch(err => {}); // noreplay to avoid re-executing action after a refreshPage
+
+			return (answer_struct ? answer_struct.tx_info : null);
+		}
+
 
 		// encryption support
 		async computeAesEncryptString(plaintext) {
@@ -607,6 +692,9 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 				// widget_uuid
 				querystring += (params.widget_uuid ? '&widget_uuid=' + params.widget_uuid : '');
 
+				// widget_view
+				querystring += (params.widget_view ? '&widget_view=' + params.widget_view : '');
+
 				// caller
 				querystring += (params.caller_uuid ? '&caller_uuid=' + params.caller_uuid : '');
 				querystring += ((params.pay_disabled === true) || (params.pay_disabled === 'true') ? '&disabled=true': '');
@@ -657,14 +745,14 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 			return widget;
 		}
 	
-		static postDataToWidget = (name, data) => {
+		static postDataToWidget(name, data) {
 			let widget = PrimusMoneyWidgetClient.getWidget(name);
 	
 			if (widget)
 				widget.postData(data);
 		}
 	
-		static sendRequestToWidget = async (name, data) => {
+		static async sendRequestToWidget(name, data) {
 			let widget = PrimusMoneyWidgetClient.getWidget(name);
 	
 			if (widget)
