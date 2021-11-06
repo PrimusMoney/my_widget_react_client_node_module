@@ -1,0 +1,13 @@
+{
+  "name": "@primusmoney/my_widget_react_client",
+  "version": "0.30.9",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/primusmoney/my_widget_react_client_node_module"
+  },
+  "author": "PrimusMoney",
+  "homepage": "https://www.primusmoney.com/",
+  "dependencies": {
+  }
+}

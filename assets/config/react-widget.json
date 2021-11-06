@@ -1,0 +1,11 @@
+{
+	"description": "built-in widget specification",
+	"widget": "pay",
+	"widget_url": "https://widget.primusmoney.com/my-widget/v1",
+	"client_id": "e07e1fb6-0500-2584-e9f6-a649f76b94a9",
+	"client_key": "d96778a7-b62f-1c62-61af-71f9c04b0611",
+	"remote_wallet_driver": "PrimusMoney",
+	"remote_wallet_url": "https://wallet.primusmoney.com/my-wallet/",
+	"remote_wallet_ring": "1",
+	"local_wallet_hide": "true"
+}

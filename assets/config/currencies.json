@@ -1,0 +1,198 @@
+{
+	"busd": {
+		"scheme": {
+			"name": "binance smart chain",
+			"uuid": "97b653fb-23e7-bb44-55e3-e8add129b13f",
+			"restserver": {
+				"activate": false
+			},
+			"authserver": {
+				"activate": false
+			},
+			"keyserver": {
+				"activate": false
+			},
+			"ethnodeserver": {
+				"name": "binancesmartchain",
+				"activate": false,
+				"web3_provider_url": "https://bsc-dataseed.binance.org/",
+				"explorer_url": "https://bscscan.com/",
+				"chainid": 56,
+				"networkid": 56,
+				"default_gas_limit": "21000",
+				"default_gas_price": "10000000000",
+				"avg_transaction_fee": "0.00021",
+				"transaction_units_min": "2"
+			}
+	
+		},
+		"currency": {
+			"name": "BUSD Token",
+			"symbol": "BUSD",
+			"decimals": 18,
+			"uuid": "850a8f08-5c0a-fd4e-752a-ebd9368a97de", 
+			"description": "BUSD on Binance Smart Chain",
+			"address": "0xe9e7cea3dedca5984780bafc599bd69add087d56", 
+			"scheme_uuid": "97b653fb-23e7-bb44-55e3-e8add129b13f",
+			"ops": {"canpay": true, "cantopup": false},
+			"provider": "provider.js",
+			"pretrade_scheme_uuid": "b1a18ba9-1609-3f66-c1fd-42ae0073efac"
+		}
+	},
+	"busd-t": {
+		"scheme": {
+			"name": "binance smart chain",
+			"uuid": "97b653fb-23e7-bb44-55e3-e8add129b13f",
+			"restserver": {
+				"activate": false
+			},
+			"authserver": {
+				"activate": false
+			},
+			"keyserver": {
+				"activate": false
+			},
+			"ethnodeserver": {
+				"name": "binancesmartchain",
+				"activate": false,
+				"web3_provider_url": "https://bsc-dataseed.binance.org/",
+				"explorer_url": "https://bscscan.com/",
+				"chainid": 56,
+				"networkid": 56,
+				"default_gas_limit": "21000",
+				"default_gas_price": "10000000000",
+				"avg_transaction_fee": "0.00021",
+				"transaction_units_min": "2"
+			}
+	
+		},
+		"currency": {
+			"name": "Tether USD",
+			"symbol": "USDT",
+			"decimals": 18,
+			"uuid": "6ce89698-f8ee-ccf8-a48f-99ced0d14a67", 
+			"description": "USD-T on Binance Smart Chain",
+			"address": "0x55d398326f99059ff775485246999027b3197955", 
+			"scheme_uuid": "97b653fb-23e7-bb44-55e3-e8add129b13f",
+			"ops": {"canpay": true, "cantopup": false},
+			"provider": "provider.js",
+			"pretrade_scheme_uuid": "b1a18ba9-1609-3f66-c1fd-42ae0073efac"
+		}
+	},
+	"busd-c": {
+		"scheme": {
+			"name": "binance smart chain",
+			"uuid": "97b653fb-23e7-bb44-55e3-e8add129b13f",
+			"restserver": {
+				"activate": false
+			},
+			"authserver": {
+				"activate": false
+			},
+			"keyserver": {
+				"activate": false
+			},
+			"ethnodeserver": {
+				"name": "binancesmartchain",
+				"activate": false,
+				"web3_provider_url": "https://bsc-dataseed.binance.org/",
+				"explorer_url": "https://bscscan.com/",
+				"chainid": 56,
+				"networkid": 56,
+				"default_gas_limit": "21000",
+				"default_gas_price": "10000000000",
+				"avg_transaction_fee": "0.00021",
+				"transaction_units_min": "2"
+			}
+	
+		},
+		"currency": {
+			"name": "USD Coin",
+			"symbol": "USDC",
+			"decimals": 18,
+			"uuid": "157215b9-b085-978d-5894-1fcf6ef4dd42", 
+			"description": "USD Coin on Binance Smart Chain",
+			"address": "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d", 
+			"scheme_uuid": "97b653fb-23e7-bb44-55e3-e8add129b13f",
+			"ops": {"canpay": true, "cantopup": false},
+			"provider": "provider.js",
+			"pretrade_scheme_uuid": "b1a18ba9-1609-3f66-c1fd-42ae0073efac"
+		}
+	},
+	"cUSD": {
+		"scheme": {
+			"name": "celo scheme",
+			"uuid": "41053643-0139-655c-691d-213009a58e87",
+			"restserver": {
+				"activate": false
+			},
+			"authserver": {
+				"activate": false
+			},
+			"keyserver": {
+				"activate": false
+			},
+			"ethnodeserver": {
+				"name": "celo",
+				"activate": false,
+				"web3_provider_url": "https://forno.celo.org",
+				"explorer_url": "https://explorer.celo.org/",
+				"chainid": 42220,
+				"networkid": 42220,
+				"default_gas_limit": "84000",
+				"default_gas_price": "1000000000",
+				"avg_transaction_fee": "0.000021000",
+				"transaction_units_min": "2"
+			}
+		},
+		"currency": {
+			"name": "Celo Dollar",
+			"symbol": "cUSD",
+			"decimals": 18,
+			"uuid": "c8d24e2f-6aa4-1b70-5853-3cb8f67167b1", 
+			"description": "cUSD on Celo",
+			"address": "0x765de816845861e75a25fca122bb6898b8b1282a", 
+			"web3providerurl": "https://forno.celo.org",
+			"scheme_uuid": "41053643-0139-655c-691d-213009a58e87",
+			"ops": {"canpay": true, "cantopup": false, "canswap": false}
+		}
+	},
+	"cEUR": {
+		"scheme": {
+			"name": "celo scheme",
+			"uuid": "41053643-0139-655c-691d-213009a58e87",
+			"restserver": {
+				"activate": false
+			},
+			"authserver": {
+				"activate": false
+			},
+			"keyserver": {
+				"activate": false
+			},
+			"ethnodeserver": {
+				"name": "celo",
+				"activate": false,
+				"web3_provider_url": "https://forno.celo.org",
+				"explorer_url": "https://explorer.celo.org/",
+				"chainid": 42220,
+				"networkid": 42220,
+				"default_gas_limit": "84000",
+				"default_gas_price": "1000000000",
+				"avg_transaction_fee": "0.000021000",
+				"transaction_units_min": "2"
+			}
+		},
+		"currency": {
+			"name": "Celo Euro",
+			"symbol": "cEUR",
+			"decimals": 18,
+			"uuid": "1eeca51e-ba3a-5956-bdf4-41d13f5e12c9", 
+			"description": "cEUR on Celo",
+			"address": "0xd8763cba276a3738e6de85b4b3bf5fded6d6ca73", 
+			"web3providerurl": "https://forno.celo.org",
+			"scheme_uuid": "41053643-0139-655c-691d-213009a58e87",
+			"ops": {"canpay": true, "cantopup": false, "canswap": false}
+		}
+	}	
+}
