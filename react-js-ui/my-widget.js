@@ -158,7 +158,7 @@ class MyWidget extends React.Component {
 
 	render() {
 		return (
-			<div className="MyWidgetContainer">
+			<div className={`${(this.props.cname ? this.props.cname : '')}`}>
 				
 				<div title="place-holder" id={this.uuid}></div>
 

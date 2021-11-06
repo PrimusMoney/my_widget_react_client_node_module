@@ -4,21 +4,21 @@ const WidgetClient = window.PrimusMoneyWidgetClient;
 
 class ReactWidgetClient {
 
-	static guid = () => {
+	static guid() {
 		return WidgetClient.guid();
 	}
 
-	static getWidgetUrl = async (params) => {
+	static async getWidgetUrl(params) {
 		return WidgetClient.getWidgetUrl(params);
 	}
 
 	// 1 step creation and register
-	static registerWidget = (name, params) => {
+	static registerWidget(name, params) {
 		return WidgetClient.registerWidget(name, params);
 	}
 
 	// 2 step creation and register
-	static createWidget = (name, params) => {
+	static createWidget(name, params) {
 		let widget = new WidgetClient(name);
 
 		widget.params = params;
@@ -46,12 +46,12 @@ class ReactWidgetClient {
 
 
 
-	static getWidget = (widget_client_name) => {
+	static getWidget(widget_client_name) {
 		return WidgetClient.getWidget(widget_client_name);
 	}
 
 	// react native
-	static createWidgetTag = async (widget_client_id, params) => {
+	static async createWidgetTag(widget_client_id, params) {
 		try {
 			let widget_url = await ReactWidgetClient.getWidgetUrl(params)
 		
@@ -68,7 +68,7 @@ class ReactWidgetClient {
 
 
 	// react web
-	static createWidgetiFrame = async (widget_client_id, params, onIFrameLoad) => {
+	static async createWidgetiFrame(widget_client_id, params, onIFrameLoad) {
 		try {
 			let widget_url = await ReactWidgetClient.getWidgetUrl(params);
 
