@@ -157,13 +157,18 @@ class MyWidget extends React.Component {
 	}
 
 	render() {
-		return (
+		// use React.createElement to avoid "Support for the experimental syntax 'jsx' isn't currently enabled"
+		// when using this component
+		return React.createElement('div', {className: (this.props.className ? this.props.className : null), title: "widget"}, 
+		[React.createElement('div', {title: "place-holder", id: this.uuid})]);
+
+/* 		return (
 			<div className={`${(this.props.cname ? this.props.cname : '')}`}>
 				
 				<div title="place-holder" id={this.uuid}></div>
 
 			</div>
-		);
+		); */
 	}
 
 
