@@ -8,7 +8,7 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 			this.app_info = null;
 			this.app_uuid = null;
 	
-			this.current_version = '0.20.51.2021.11.06';
+			this.current_version = '0.20.67.2022.04.19';
 	
 			// events (use window event system)
 			window.addEventListener('message', this.handleMessage.bind(this), false);
@@ -454,6 +454,7 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 			this.postData({action: 'setToAddress', address});
 		}
 
+		// card
 		async getCardAddress() {
 			let answer_struct = await this.sendRequest({action: 'getCardAddress'})
 			.catch(err => {});
@@ -499,7 +500,33 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 			return (answer_struct ? answer_struct : null); 
 		}
 
+		// changing widget's internal settings
+		async doOpenSessionWallet(sessionuuid, schemeconfig) {
+			let answer_struct = await this.sendRequest({action: 'openSessionWallet', sessionuuid, schemeconfig})
+			.catch(err => {}); // noreplay to avoid re-executing action after a refreshPage
 
+			return (answer_struct ? answer_struct.sessionuuid : null);
+		}
+
+		async doAddCard(address, privatekey) {
+			let answer_struct = await this.sendRequest({action: 'doAddCard', address, privatekey, noreplay: true})
+			.catch(err => {}); // noreplay to avoid re-executing action after a refreshPage
+
+			return (answer_struct ? answer_struct.card_address : null);
+		}
+
+		async doChangeCurrentCard(address) {
+			let answer_struct = await this.sendRequest({action: 'doChangeCurrentCard', address, noreplay: true})
+			.catch(err => {}); // noreplay to avoid re-executing action after a refreshPage
+
+			return (answer_struct ? answer_struct.card_address : null);
+		}
+
+
+
+
+
+		// invoice
 		async getInvoiceId() {
 			let answer_struct = await this.sendRequest({action: 'getInvoiceId'})
 			.catch(err => {});
@@ -669,10 +696,18 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 		
 				// optional
 				querystring += (params.mutable !== undefined ? '&mutable=' + params.mutable : '');
+				querystring += (params.remote_wallet_hide ? '&remote_wallet_hide=' + params.remote_wallet_hide : '');
 				querystring += (params.remote_wallet_driver ? '&remote_wallet_driver=' + params.remote_wallet_driver : '');
 				querystring += (params.remote_wallet_url ? '&remote_wallet_url=' + this.encodebase64(params.remote_wallet_url) : '');
 				querystring += (params.remote_wallet_ring ? '&remote_wallet_ring=' + params.remote_wallet_ring : '');
+				querystring += (params.remote_wallet_route ? '&remote_wallet_route=' + params.remote_wallet_route : '');
+				querystring += (params.remote_wallet_params_string ? '&remote_wallet_params_string=' + this.encodebase64(params.remote_wallet_params_string) : '');
 				querystring += (params.local_wallet_hide ? '&local_wallet_hide=' + params.local_wallet_hide : '');
+				querystring += (params.local_wallet_ring ? '&local_wallet_ring=' + params.local_wallet_ring : '');
+				querystring += (params.local_wallet_route ? '&local_wallet_route=' + params.local_wallet_route : '');
+				querystring += (params.local_wallet_params_string ? '&local_wallet_params_string=' + this.encodebase64(params.local_wallet_params_string) : '');
+
+				querystring += (params.cardaddress ? '&cardaddress=' + params.cardaddress : '');
 
 				querystring += (params.returnurl ? '&returnurl=' + this.encodebase64(params.returnurl) : '');
 				querystring += (params.callbackurl ? '&callbackurl=' + this.encodebase64(params.callbackurl) : '');
@@ -692,8 +727,9 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 				// widget_uuid
 				querystring += (params.widget_uuid ? '&widget_uuid=' + params.widget_uuid : '');
 
-				// widget_view
+				// widget view
 				querystring += (params.widget_view ? '&widget_view=' + params.widget_view : '');
+				querystring += (params.qrcode_on_mobile ? '&qrcode_on_mobile=' + params.qrcode_on_mobile : '');
 
 				// caller
 				querystring += (params.caller_uuid ? '&caller_uuid=' + params.caller_uuid : '');
@@ -703,7 +739,7 @@ if (typeof window.PrimusMoneyWidgetClient === "undefined") {
 				// then pack everything in a b64 code
 				let b64params = this.encodebase64(querystring);
 
-				widget_url += '?b64params=' + b64params
+				widget_url += '?b64params=' + b64params;
 
 			}
 			catch(e) {
